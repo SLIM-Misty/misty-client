@@ -2,7 +2,7 @@ import requests
 import json
 
 from misty_client import base
-
+from mist_client.perception.slam import slam_stream
 
 class Picture(base.Base):
 
@@ -21,15 +21,17 @@ class Picture(base.Base):
         }
         request.post(url, json=payload)
 
-    def take_depth(self):
+    @slam_stream
+    def take_depth(self, *args, **kwargs):
         # Need to import slam sensor and start it
         url = "{}/cameras/depth".format(self.url_base)
-        request.get(url)
+        return request.get(url)
 
-    def take_fisheye(self):
+    @slam_stream
+    def take_fisheye(self, *args, **kwargs):
         # Need to import slam sensor and start it
         url = "{}/cameras/fisheye".format(self.url_base)
-
+        return request.get(url)
 
 class Video(object):
     pass
