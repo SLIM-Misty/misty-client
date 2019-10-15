@@ -23,13 +23,12 @@ class Picture(base.Base):
 
     @slam_stream
     def take_depth(self, *args, **kwargs):
-        # Need to import slam sensor and start it
+        import pdb; pdb.set_trace()
         url = "{}/cameras/depth".format(self.url_base)
         return request.get(url)
 
     @slam_stream
     def take_fisheye(self, *args, **kwargs):
-        # Need to import slam sensor and start it
         url = "{}/cameras/fisheye".format(self.url_base)
         return request.get(url)
 
