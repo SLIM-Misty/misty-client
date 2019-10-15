@@ -19,18 +19,18 @@ class Picture(base.Base):
             "DisplayOnScreen": onscreen,
             "OverwriteExisting": overwrite
         }
-        request.post(url, json=payload)
+        return self.client.post(url, json=payload)
 
     @slam_stream
     def take_depth(self, *args, **kwargs):
-        import pdb; pdb.set_trace()
         url = "{}/cameras/depth".format(self.url_base)
-        return request.get(url)
+        return self.client.get(url)
 
     @slam_stream
     def take_fisheye(self, *args, **kwargs):
         url = "{}/cameras/fisheye".format(self.url_base)
-        return request.get(url)
+        return self.client.get(url)
+
 
 class Video(object):
     pass

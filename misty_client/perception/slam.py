@@ -8,11 +8,11 @@ class SLAM(base.Base):
 
     def start(self):
         url = "{}/slam/streaming/start".format(self.url_base)
-        return request.post(url)
+        return self.client.post(url)
 
     def stop(self):
         url = "{}/slam/streaming/stop".format(self.url_base)
-        return request.post(url)
+        return self.client.post(url)
 
 
 def slam_stream(func):
