@@ -17,7 +17,9 @@ class SLAM(base.Base):
 
 def slam_stream(func):
     def stream(*args, **kwargs):
-        slam = SLAM(kwargs["ip"])
+        # Assumption is made that only classes pertaining
+        # to the REST API are being decorated
+        slam = SLAM(args[0].ip)
         slam.start()
         func(*args, **kwargs)
         slam.stop()

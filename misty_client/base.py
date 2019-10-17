@@ -1,5 +1,6 @@
 import requests
 
+
 class Client(object):
 
     def __init__(self, ip):
@@ -20,6 +21,7 @@ class Client(object):
     def delete(self, url, params={}, **kwargs):
         url = "{}{}".format(self.api_base, url)
         return request.delete(url, params=params)
+
 
 class Base(object):
 
