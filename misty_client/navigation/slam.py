@@ -19,9 +19,6 @@ def slam_stream(func):
     def stream(*args, **kwargs):
         slam = SLAM(kwargs["ip"])
         slam.start()
-        if kwargs:
-            func(*args, **kwargs)
-        else:
-            func(*args)
+        func(*args, **kwargs)
         slam.stop()
     return stream

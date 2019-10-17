@@ -4,6 +4,7 @@ import json
 from misty_client import base
 from misty_client.navigation.slam import slam_stream
 
+
 class Picture(base.Base):
 
     def __init__(self, ip):
