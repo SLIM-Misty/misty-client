@@ -2,7 +2,7 @@ import requests
 import json
 
 from misty_client import base
-from misty_client.perception.slam import slam_stream
+from misty_client.navigation.slam import slam_stream
 
 class Picture(base.Base):
 
