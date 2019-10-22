@@ -51,3 +51,76 @@ def move_head(pitch, roll, yaw, velocity=50, duration=None, units='degrees'):
     requests.post("HTTP://" + ip + "/api/head", json=parameters)
 
 move_head(0,0,0)
+
+"""Drives Misty forward or backward at a specific speed until cancelled.
+When using the Drive command, it helps to understand how linear velocity (speed in a straight line) and angular velocity (speed and direction of rotation) work together:
+Linear velocity (-100) and angular velocity (0) = driving straight backward at full speed.
+Linear velocity (100) and angular velocity (0) = driving straight forward at full speed.
+Linear velocity (0) and angular velocity (-100) = rotating clockwise at full speed.
+Linear velocity (0) and angular velocity (100) = rotating counter-clockwise at full speed.
+Linear velocity (non-zero) and angular velocity (non-zero) = Misty drives in a curve.
+Endpoint: POST <robot-ip-address>/api/drive
+Parameters
+LinearVelocity (double) - A percent value that sets the speed for Misty when she drives in a straight line. Default value range is from -100 (full speed backward) to 100 (full speed forward).
+AngularVelocity (double) - A percent value that sets the speed and direction of Misty's rotation. Default value range is from -100 (full speed rotation clockwise) to 100 (full speed rotation counter-clockwise). Note: For best results when using angular velocity, we encourage you to experiment with using small positive and negative values to observe the effect on Misty's movement.
+{
+  "LinearVelocity": 20,
+  "AngularVelocity": 15,
+}
+JSON
+Return Values
+Result (boolean) - Returns true if there are no errors related to this command."""
+
+def drive(lin_vel=50,ang_vel=50, vel_type='linear'):
+    if vel_type is 'linear':
+        parameters = {
+            "LinearVelocity":lin_vel
+        }
+    elif vel_type is 'angular':
+        parameters = {
+            "AngularVelocity":ang_vel
+        }
+    requests.post("HTTP://" + ip + "/api/drive", json=parameters)
+
+"""DriveTime
+Drives Misty forward or backward at a set speed, with a given rotation, for a specified amount of time.
+When using the DriveTime command, it helps to understand how linear velocity (speed in a straight line) and angular velocity (speed and direction of rotation) work together:
+Linear velocity (-100) and angular velocity (0) = driving straight backward at full speed.
+Linear velocity (100) and angular velocity (0) = driving straight forward at full speed.
+Linear velocity (0) and angular velocity (-100) = rotating clockwise at full speed.
+Linear velocity (0) and angular velocity (100) = rotating counter-clockwise at full speed.
+Linear velocity (non-zero) and angular velocity (non-zero) = Misty drives in a curve.
+Endpoint: POST <robot-ip-address>/api/drive/time
+Parameters
+LinearVelocity (double) - A percent value that sets the speed for Misty when she drives in a straight line. Default value range is from -100 (full speed backward) to 100 (full speed forward).
+AngularVelocity (double) - A percent value that sets the speed and direction of Misty's rotation. Default value range is from -100 (full speed rotation clockwise) to 100 (full speed rotation counter-clockwise). Note: For best results when using angular velocity, we encourage you to experiment with using small positive and negative values to observe the effect on Misty's movement.
+TimeMs (integer) - A value in milliseconds that specifies the duration of movement. Misty will not drive if you pass in a value of less than 100 for this parameter.
+Degree (double) - (optional) The number of degrees to turn. Note: Supplying a Degree value recalculates linear velocity.
+{
+  "LinearVelocity": 1,
+  "AngularVelocity": 4,
+  "TimeMS": 500
+}
+JSON
+Return Values
+Result (boolean) - Returns true if there are no errors related to this command."""
+def drive_time(lin_vel=50, ang_vel=50, vel_type='linear', degree=180, time_ms=500, time_type='time'):
+    parameters = {}
+    if vel_type is 'linear':
+        parameters['LinearVelocity'] = lin_vel
+    elif vel_type is 'angular':
+        parameters['AngularVelocity'] = ang_vel
+
+    if time_type is 'time':
+        parameters['TimeMS'] = time_ms
+    elif time_type is 'degree':
+        parameters['Degree'] = degree
+
+    requests.post("HTTP://" + ip + "/api/drive/time", json=parameters)
+
+
+
+
+
+
+
