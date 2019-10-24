@@ -20,7 +20,7 @@ class Picture(base.Base):
             "DisplayOnScreen": onscreen,
             "OverwriteExisting": overwrite
         }
-        return self.client.post(url, json=payload)
+        return self.client.post(url, payload)
 
     @slam_stream
     def take_depth(self, *args, **kwargs):
