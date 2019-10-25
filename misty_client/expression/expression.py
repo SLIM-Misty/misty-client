@@ -1,6 +1,10 @@
 from misty_client import base
 
 
+class NoAudioFileException(Exception):
+    pass
+
+
 class Expression(base.Base):
 
     def __init__(self, ip):
@@ -15,7 +19,7 @@ class Expression(base.Base):
         }
         return self.client.post(url, payload)
 
-    def display_image(self, filename="", alpha=1):
+    def display_image(self, filename, alpha=1):
         url = "{}/images/display".format(self.url_base)
         payload = {
             "FileName": filename,
@@ -23,7 +27,9 @@ class Expression(base.Base):
         }
         return self.client.post(url, payload)
 
-    def play_audio(self, assestId=None, filename=None, volume=50):
+    def play_audio(self, assetId=None, filename=None, volume=50):
+        if not assetId and not filename:
+            raise NoAudioFileException("No file or assetId specified")
         url = "{}/audio/play".format(self.url_base)
         payload = {
             "fileName": filename,
