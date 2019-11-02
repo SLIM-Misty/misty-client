@@ -23,8 +23,8 @@ class Picture(base.Base):
           filename (str): Name of the file where the image will be saved.
           width (int): Width of image in pixels.
           height (int): Height of image in pixels.
-          onscreen (boolean): If true and filename is provided then show on misty.
-          overwrite (boolean): Whether to overwrite a file with the same name.
+          onscreen (bool): If true and filename is provided then show on misty.
+          overwrite (bool): Whether to overwrite a file with the same name.
 
         Returns:
           object: An object containing image data and meta information.
