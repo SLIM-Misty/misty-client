@@ -40,13 +40,14 @@ class Expression(base.Base):
     def turn_light_on(self):
         url = "{}/flashlight".format(self.url_base)
         payload = {
-            "On": "true"
+            "on": "true"
         }
         return self.client.post(url, payload)
 
     def turn_light_off(self):
         url  = "{}/flashlight".format(self.url_base)
         payload = {
-            "On": "false"
+            "on": "false"
         }
+        import pdb; pdb.set_trace()
         return self.client.post(url, payload)

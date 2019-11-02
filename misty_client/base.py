@@ -7,10 +7,10 @@ class Client(object):
         return requests.get(url, params=params)
 
     def post(self, url, payload, params={}, **kwargs):
-        return requests.post(url, params=params, data=payload)
+        return requests.post(url, params=params, json=payload)
 
     def put(self, url, payload, params={}, **kwargs):
-        return requests.put(url, params=params, data=payload)
+        return requests.put(url, params=params, json=payload)
 
     def delete(self, url, params={}, **kwargs):
         return requests.delete(url, params=params)
