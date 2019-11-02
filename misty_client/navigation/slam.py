@@ -2,7 +2,7 @@ from misty_client import base
 
 
 class SLAM(base.Base):
-"""Collection of functions used to interact with SLAM endpoints"""
+    """Collection of functions used to interact with SLAM endpoints"""
 
     def __init__(self, ip):
         """Initializes the SLAM class with the IP of Misty.
