@@ -11,7 +11,7 @@ class NoFaceFoundException(Exception):
         self.message = "File: {}".format(filepath)
 
 
-def get_face_emotion_information(filepath):
+def get_face_emotion(filepath):
     """Gets emtion information about faces in provided image.
 
     Args:
