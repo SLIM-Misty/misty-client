@@ -9,7 +9,7 @@ class Picture(base.Base):
     """Contains various functions to take pictures with each camera type."""
 
     def __init__(self, ip):
-        """Initializes the picture class with the IP of Misty.
+        """Initializes the Picture class with the IP of Misty.
 
         Args:
           ip (str): IP address of the Misty robot.

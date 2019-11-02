@@ -9,7 +9,7 @@ class Expression(base.Base):
     """Contains various functions to interact with Misty's expression endpoints."""
 
     def __init__(self, ip):
-        """Initializes the picture class with the IP of Misty.
+        """Initializes the Expression class with the IP of Misty.
 
         Args:
           ip (str): IP address of the Misty robot.
