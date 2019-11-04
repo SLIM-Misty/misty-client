@@ -16,7 +16,7 @@ class Picture(base.Base):
         """
         super(Picture, self).__init__(ip)
 
-    def take(self, filename, width=300, height=200, onscreen=True, overwrite=True):
+    def take(self, filename, width=300, height=200, onscreen=False, overwrite=True):
         """Takes a picture with the RGB camera.
 
         Args:
