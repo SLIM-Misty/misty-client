@@ -102,3 +102,7 @@ venv.bak/
 
 # mypy
 .mypy_cache/
+
+# Pictures from Misty's camera
+test.png
+test_fisheye.png

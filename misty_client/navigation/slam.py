@@ -61,6 +61,7 @@ def slam_stream(func):
         # to the REST API are being decorated. Arg 0 = self.
         slam = SLAM(args[0].ip)
         slam.start()
-        func(*args, **kwargs)
+        resp = func(*args, **kwargs)
         slam.stop()
+        return resp
     return stream
