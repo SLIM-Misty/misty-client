@@ -35,13 +35,13 @@ def get_face_emotion(filepath):
 
     for face in detected_faces:
         emotion_data["face {}".format(face_cnt)] = {
-            "anger": getattr(face, face_attr + "anger"),
-            "contempt": getattr(face, face_attr + "contempt"),
-            "disgust": getattr(face, face_attr + "fear"),
-            "happiness": getattr(face, face_attr + "happiness"), 
-            "neutral": getattr(face, face_attr + "neutral"),
-            "sadness": getattr(face, face_attr + "sadness"),
-            "surprise": getattr(face, face_attr + "surprise")
+            "anger": face.face_attributes.emotion.anger,
+            "contempt": face.face_attributes.emotion.contempt,
+            "disgust": face.face_attributes.emotion.fear, 
+            "happiness": face.face_attributes.emotion.happiness, 
+            "neutral": face.face_attributes.emotion.neutral, 
+            "sadness": face.face_attributes.emotion.sadness, 
+            "surprise": face.face_attributes.emotion.surprise 
         }
 
     return emotion_data 
