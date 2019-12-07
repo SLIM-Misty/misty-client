@@ -26,7 +26,6 @@ def get_coord(grid):
 a,b = get_coord(grid)
 
 path = nav.get_slampath(a,b)
-import pdb; pdb.set_trace()
 z = json.loads(path.content)["result"]
 
 #nav.follow_path(path)
