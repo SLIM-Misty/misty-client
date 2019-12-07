@@ -44,4 +44,4 @@ while True:
 
     print(max_emotion)
 
-    time.sleep(.01)
+    time.sleep(.7)
