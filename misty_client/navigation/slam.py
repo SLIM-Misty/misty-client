@@ -40,6 +40,53 @@ class SLAM(base.Base):
         url = "{}/slam/streaming/stop".format(self.url_base)
         return self.client.post(url)
 
+    def start_mapping(self):
+        url = "{}/slam/map/start".format(self.url_base)
+        return self.client.post(url)
+
+    def stop_mapping(self):
+        url = "{}/slam/map/stop".format(self.url_base)
+        return self.client.post(url)
+
+    def get_map(self):
+        url = "{}/slam/map".format(self.url_base)
+        return self.client.get(url)
+
+    def get_slampath(self, x, y):
+        url = "{}/slam/path".format(self.url_base)
+        payload = {
+            "X": x,
+            "Y": y,
+        }
+        return self.client.get(url, params=payload)
+
+    def start_tracking(self):
+        url = "{}/slam/track/start".format(self.url_base)
+        return self.client.post(url)
+
+    def stop_tracking(self):
+        url = "{}/slam/track/stop".format(self.url_base)
+        return self.client.post(url)
+
+    def drive_to_location(self, x, y):
+        self.start_tracking()
+        url = "{}/drive/coordinates".format(self.url_base)
+        payload = {
+            "Destination": "{0}:{1}".format(x, y)
+        }
+        resp = self.client.post(url, payload)
+        self.stop_tracking()
+        return resp
+
+    def follow_path(self, path):
+        self.start_tracking()
+        url = "{}/drive/path".format(self.url_base)
+        payload = {
+            "Path": path,
+        }
+        resp = self.client.post(url, payload)
+        self.stop_tracking()
+        return resp
 
 def slam_stream(func):
     """Decorator used to handle opening and closing of SLAM stream.
@@ -61,6 +108,7 @@ def slam_stream(func):
         # to the REST API are being decorated. Arg 0 = self.
         slam = SLAM(args[0].ip)
         slam.start()
-        func(*args, **kwargs)
+        resp = func(*args, **kwargs)
         slam.stop()
+        return resp
     return stream
