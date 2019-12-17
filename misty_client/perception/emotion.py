@@ -27,20 +27,20 @@ def get_face_emotion(filepath):
         detected_faces = face_client.face.detect_with_stream(face_fd, return_face_attributes=FaceAttributeType.emotion)
 
     if not detected_faces:
-        raise NoFaceFoundException(filepath) 
+        return None
+    else:
+        emotion_data = {}
+        emotion_data["face"] = []
 
-    emotion_data = {}
-    emotion_data["face"] = []
+        for face in detected_faces:
+            emotion_data["face"].append({
+                "anger": face.face_attributes.emotion.anger,
+                "contempt": face.face_attributes.emotion.contempt,
+                "disgust": face.face_attributes.emotion.fear, 
+                "happiness": face.face_attributes.emotion.happiness, 
+                "neutral": face.face_attributes.emotion.neutral, 
+                "sadness": face.face_attributes.emotion.sadness, 
+                "surprise": face.face_attributes.emotion.surprise 
+            })
 
-    for face in detected_faces:
-        emotion_data["face"].append({
-            "anger": face.face_attributes.emotion.anger,
-            "contempt": face.face_attributes.emotion.contempt,
-            "disgust": face.face_attributes.emotion.fear, 
-            "happiness": face.face_attributes.emotion.happiness, 
-            "neutral": face.face_attributes.emotion.neutral, 
-            "sadness": face.face_attributes.emotion.sadness, 
-            "surprise": face.face_attributes.emotion.surprise 
-        })
-
-    return emotion_data 
+        return emotion_data 
