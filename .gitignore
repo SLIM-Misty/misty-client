@@ -106,3 +106,4 @@ venv.bak/
 # Pictures from Misty's camera
 test.png
 test_fisheye.png
+cur_image.png
